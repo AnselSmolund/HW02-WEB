@@ -1,0 +1,123 @@
+<!doctype html>
+<html> <!--<![endif]-->
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title></title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="apple-touch-icon" href="apple-touch-icon.png">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="css/main.css">
+
+      <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <div class = "col-md-2">
+          <img height = "200" src = "coverGif.gif">
+        </div>
+        <div class = "col-md-8">
+          <h1>Cloth Simulation</h1>
+          <p> CSCI 5611 Physical Simulation Project Webpage<br> Ansel Smolund <br> Smolu006 </p>
+        </div>
+        <div class = "col-md-2">
+          <img style = "transform: translateX(-40%)" height = "200" src = "flagGif.gif">
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id = "water-fountain">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 style = "text-align: center">Cloth and Ball Interaction</h2>
+          <h4 style = "text-align: center"> <a href = "https://github.com/AnselSmolund/cloth-simulation"> Link to Code </a> </h4>
+          <p>&nbsp &nbsp For my first cloth simulation, I built an physical interaction simulation between a cloth and a sphere.
+            The sphere is controlled with the mouse and the cloth realistically reacts to when it comes in contact with the ball.
+            One problem that arose while I was working on this simulation is that if the ball came into contact with the net too fast,
+            it would just go right through. This is because my collision check function was only being called once per draw loop. To fix this
+            issue, I created two seperate loops in my draw function, one for displaying the cloth and the ball, and another loop for checking
+            checking collisions. The collision check function now is being called 60 times per draw loop instead of the one time, which
+            allows for more 60 times more collision detection checks per second then before, allowing for a more realistic simulation.
+            For the 3D user controlled camera I am using the Peasycam library for processing.
+             <br>
+             <br>
+             &nbsp&nbsp The video to the right shows the simulation in action. It shows the 3d navigatable, user-controlled camera of the scene. The
+             first figure in the upper left is the framerate, and the second figure is the number of stiches in the cloth (rows * columns). When the
+             user presses 'd' the cloth becomes unpinned to the corners and gravity takes control. When the cloth comes into contact with the ball,
+             a drag force is applied and the cloth slowly falls off the ball and onto the ground.
+             <br>
+             <br>
+              &nbsp&nbsp The bottom video on the right shows how I have implemented tearable cloth. When the ball comes into contact
+              with the cloth, the links between each stich that comes into contact with the ball becomes unconnected, resulting in a
+              tearable cloth simulation.
+             <ul>
+               <li>(5) Realtime rendering </li>
+               <li>(5) Video documenting your system  </li>
+               <li>(5) 3D rendering, with user-controlled camera </li>
+               <li>(5) Real-time user interaction with system </li>
+               <li>(10) 2D Mass-spring cloth simulation </li>
+               <li>(10) 3D Mass-spring cloth simulation</li>
+               <li>(10) Drag-terms  </li>
+               <li>(10) 1-way cloth-object interaction </li>
+               <li>Benchmark: (15) 30x30 Cloth with obstacle interaction at 30 FPS</li>
+               <li>(10)Textured simulated objects</li>
+               <li>(10) Tear-able cloth</li>
+             </ul>
+         </p>
+          <img width = "150" src = "img/one.png">
+          <img width = "200" src = "img/two.png">
+          <img width = "150" src = "img/three.png">
+        </div>
+        <div class="col-md-3">
+          <video height = "300" controls>
+            <source src = "videos/fall1.mov">
+          </video>
+          <video height = "500" controls>
+            <source src = "videos/tear.mov">
+          </video>
+        </div>
+        <div class = "col-md-3">
+          <video height= "300" controls>
+            <source src = "videos/interaction3.mov">
+          </video>
+        </div>
+      </div>
+    </div> <!-- /container -->
+    <div class = "container" id = "fire">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 style = "text-align: center">Flag in Wind Simulation</h2>
+          <h4 style = "text-align: center"><a href = "https://github.com/AnselSmolund/flag-simulation"> Link to Code </a> </h4>
+          <p>
+              &nbsp&nbsp To simulate a wind component of drag term, I decided to create a flag simulation. To achieve
+              a realistic wind force for the flag, I used perlin noise along a 3D space, with three different offset counters.
+              An x offset that would reset to 0 every draw loop, a y offset that would rest every iteration of the stich loop
+              within the draw loop, and lastly a z offset counter that never gets reset. These in combination with the noise() function
+              of processing, provided for a realisitc wind force being applied. I have included a flag pool and grass for context in the simulation.
+          </p>
+          <br>
+          <br>
+          <ul>
+            <li>(5) Wind component of drag term </li>
+          </ul>
+          <img height = "300" src = "img/flag1.png">
+          <img width = "300" src = "img/flag2.png">
+        </div>
+        <div class="col-md-6">
+          <video width = "500" controls>
+            <source src = "videos/flag1.mov">
+          </video>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
